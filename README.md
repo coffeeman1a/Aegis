@@ -67,70 +67,119 @@ It collects and analyzes monitoring signals such as metrics, logs, and events, d
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Goals
-* collect telemetry from distributed services
-* correlate metrics, logs, and external events
-* detect incidents and abnormal states
-* support automated response actions
-* store incident context and execution state
-* provide operators with visibility into decisions and actions
 
-### Core functionality
-* receiving events from external systems
-(Grafana alerts, CI/CD webhooks, manual triggers)
-* querying observability data sources
-(Prometheus/VictoriaMetrics for metrics, Loki for logs)
-* incident evaluation and enrichment
-(checking related metrics/logs, confirming symptoms)
-* rule-based decision making
-(mapping incident type to response scenario)
-* automated response actions
-(restart service, rollback deployment, run script, send notification)
-* recovery validation
-(check whether service recovered after action)
-* incident state persistence
-(store incident lifecycle and actions in PostgreSQL)
-* audit trail and observability of the system itself
-(logs of decisions, actions, results)
+- Collect telemetry and events from distributed systems  
+- Normalize and ingest events from heterogeneous sources  
+- Correlate metrics, logs, and external events  
+- Detect incidents and abnormal states  
+- Support automated and consistent response actions  
+- Store incident context and execution state  
+- Provide operators with visibility into decisions and actions  
+
+## Core Functionality
+
+<br />
+<div align="center">
+  <a href="https://github.com/coffeeman1a/Aegis">
+    <img src="images/schema.svg" alt="Logo">
+  </a>
+
+### Event Ingestion
+
+- Receiving events from external systems:
+  - Grafana Alerting (webhooks)
+  - CI/CD pipelines
+  - Manual/API triggers  
+- Validation of incoming payloads  
+- Normalization into a unified internal event format  
+- Metadata enrichment:
+  - `event_id`
+  - `source`
+  - `timestamp`
+  - `event_type`  
+- Publishing events to the message broker  
+
+---
+
+### Incident Processing
+
+- Consuming events from broker  
+- Querying observability data sources:
+  - Prometheus / VictoriaMetrics (metrics)  
+  - Loki (logs)  
+- Incident evaluation and enrichment  
+- Correlation with existing incidents  
+
+---
+
+### Decision and Response
+
+- Rule-based decision engine  
+- Mapping incident types to response strategies  
+- Automated response actions:
+  - Service restart  
+  - Deployment rollback  
+  - Script execution  
+  - Notification dispatch  
+
+---
+
+### Recovery and State Management
+
+- Recovery validation after action execution  
+- Incident lifecycle management  
+- Persistent storage of:
+  - incidents  
+  - actions  
+  - execution results  
+- Idempotent action execution  
+- Deduplication of repeated events  
+
+---
+
+### Audit and Observability
+
+- Audit trail of:
+  - decisions  
+  - actions  
+  - outcomes  
+- Internal logging and observability of the system  
+
+---
 
 ### MVP
-* monolithic architecture
+* event-driven architecture with asynchronous processing
+* two main services:
+  * Event Gateway (event ingestion and normalization)
+  * Incident Orchestrator (analysis, decision-making, execution)
+* message broker (NATS JetStream) for buffering and delivery
 * rule-based decision logic
 * predefined automated actions
 * integration with selected telemetry sources only
 * focus on incident response for service-level failures
 
 ### Scenario 1: Post-deployment degradation
-* CI/CD sends deployment event
-* Aegis checks service metrics and logs
-* Aegis detects increased error rate or latency
-* Aegis triggers rollback or restart
-* Aegis verifies service recovery
-* Aegis stores incident result
+* CI/CD sends deployment event to Event Gateway
+* Event Gateway normalizes event and publishes it to broker
+* Incident Orchestrator consumes event from broker
+* Orchestrator queries service metrics and logs
+* detects increased error rate or latency
+* selects response strategy (rollback or restart)
+* executes action
+* verifies service recovery
+* stores incident result
 
 ### Scenario 2: Alert-driven recovery
-* Grafana sends alert webhook
-* Aegis queries metrics/logs for confirmation
-* Aegis selects response policy
-* Aegis executes action
-* Aegis validates recovery and records outcome
+* Grafana sends alert webhook to Event Gateway
+* Event Gateway normalizes event and publishes it to broker
+* Incident Orchestrator consumes event from broker
+* Orchestrator queries metrics/logs for confirmation
+* correlates event with existing incidents (if any)
+* selects response policy
+* executes action
+* validates recovery
+* records outcome
 
-### High-level modules of the monolith
-* API layer
-receives alerts, webhooks, manual requests
-* Incident Manager
-creates and tracks incident lifecycle
-* Telemetry Analyzer
-queries metrics and logs, enriches incidents
-* Decision Engine
-applies rules and selects response strategy
-* Action Executor
-executes automated remediation actions
-* Recovery Verifier
-checks service state after action
-* Persistence layer
-stores incidents, rules, actions, results
-* Notification/Audit module
-sends notifications and stores audit trail
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/coffeeman1a/Aegis.svg?style=for-the-badge
