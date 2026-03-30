@@ -12,7 +12,7 @@ It collects and analyzes monitoring signals such as metrics, logs, and events, d
 
 ### Observability Integrations
 * [![Prometheus][Prometheus.io]][Prometheus-url]
-* [![Loki][Grafana Loki]][Loki-url]
+* [![Loki][Loki]][Loki-url]
 * [![Grafana][Grafana.com]][Grafana-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
