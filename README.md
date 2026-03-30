@@ -78,13 +78,6 @@ It collects and analyzes monitoring signals such as metrics, logs, and events, d
 
 ## Core Functionality
 
-<br />
-<div align="center">
-  <a href="https://github.com/coffeeman1a/Aegis">
-    <img src="images/schema.svg" alt="schema">
-  </a>
-</div>
-
 ### Event Ingestion
 
 - Receiving events from external systems:
@@ -149,6 +142,14 @@ It collects and analyzes monitoring signals such as metrics, logs, and events, d
 ---
 
 ### MVP
+
+<br />
+<div align="center">
+  <a href="https://github.com/coffeeman1a/Aegis">
+    <img src="images/schema.svg" alt="Schema">
+  </a>
+</div>
+
 * event-driven architecture with asynchronous processing
 * two main services:
   * Event Gateway (event ingestion and normalization)
