@@ -29,7 +29,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/coffeeman1a/Aegis">
-    <img src="images/logo.svg" alt="Logo" width="80" height="80">
+    <img src="images/logo.svg" alt="Logo" width="120" height="120">
   </a>
 
 <h3 align="center">Aegis</h3>
@@ -133,6 +133,18 @@ stores incidents, rules, actions, results
 sends notifications and stores audit trail
 
 <!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/coffeeman1a/Aegis.svg?style=for-the-badge
+[contributors-url]: https://github.com/coffeeman1a/Aegis/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/coffeeman1a/Aegis.svg?style=for-the-badge
+[forks-url]: https://github.com/coffeeman1a/Aegis/network/members
+[stars-shield]: https://img.shields.io/github/stars/coffeeman1a/Aegis.svg?style=for-the-badge
+[stars-url]: https://github.com/coffeeman1a/Aegis/stargazers
+[issues-shield]: https://img.shields.io/github/issues/coffeeman1a/Aegis.svg?style=for-the-badge
+[issues-url]: https://github.com/coffeeman1a/Aegis/issues
+[license-shield]: https://img.shields.io/github/license/coffeeman1a/Aegis.svg?style=for-the-badge
+[license-url]: https://github.com/coffeeman1a/Aegis/blob/master/LICENSE.txt
+
+<!-- Shields.io badges -->
 [Go.dev]: https://img.shields.io/badge/Go-1.22-blue?logo=go
 [Go-url]: https://go.dev/
 
