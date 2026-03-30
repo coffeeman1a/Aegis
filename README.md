@@ -83,6 +83,7 @@ It collects and analyzes monitoring signals such as metrics, logs, and events, d
   <a href="https://github.com/coffeeman1a/Aegis">
     <img src="images/schema.svg" alt="Logo">
   </a>
+</div>
 
 ### Event Ingestion
 
